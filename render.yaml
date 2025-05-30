@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: waitlist-email-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app
+    envVars:
+      - key: SLACK_VERIFICATION_TOKEN
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: EMAIL_SERVER
+        sync: false
+        default: smtp.gmail.com
+      - key: EMAIL_FROM_NAME
+        sync: false
+        default: Your Company
